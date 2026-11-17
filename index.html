@@ -1,0 +1,1480 @@
+<!DOCTYPE html>
+<html lang="en" class="h-full dark">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>NCERT Class 11 Physics | 7.3 Universal Law of Gravitation</title>
+    
+    <!-- Tailwind CSS -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    
+    <!-- Google Fonts: Plus Jakarta Sans, Inter & JetBrains Mono -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=JetBrains+Mono:wght@400;500;600;700&family=Plus+Jakarta+Sans:wght@600;700;800&display=swap" rel="stylesheet">
+    
+    <!-- Font Awesome Icons -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+
+    <!-- MathJax Configuration for Crisp LaTeX Equations -->
+    <script>
+        window.MathJax = {
+            tex: {
+                inlineMath: [['$', '$'], ['\\(', '\\)']],
+                displayMath: [['$$', '$$'], ['\\[', '\\]']],
+                processEscapes: true
+            },
+            svg: {
+                fontCache: 'global'
+            },
+            startup: {
+                typeset: true
+            }
+        };
+    </script>
+    <script id="MathJax-script" async src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
+
+    <script>
+        tailwind.config = {
+            darkMode: 'class',
+            theme: {
+                extend: {
+                    fontFamily: {
+                        sans: ['Inter', 'sans-serif'],
+                        display: ['Plus Jakarta Sans', 'sans-serif'],
+                        mono: ['JetBrains Mono', 'monospace'],
+                    },
+                    colors: {
+                        space: {
+                            950: '#050814',
+                            900: '#0B1021',
+                            800: '#131B33',
+                            700: '#1E294B'
+                        }
+                    }
+                }
+            }
+        }
+    </script>
+
+    <style>
+        body {
+            background-color: #050814;
+            background-image: 
+                radial-gradient(at 0% 0%, rgba(79, 70, 229, 0.14) 0px, transparent 50%),
+                radial-gradient(at 100% 0%, rgba(14, 165, 233, 0.12) 0px, transparent 50%),
+                radial-gradient(at 50% 100%, rgba(16, 185, 129, 0.08) 0px, transparent 50%);
+            background-attachment: fixed;
+        }
+        .tab-content { display: none; opacity: 0; transition: opacity 0.25s ease-in-out; }
+        .tab-content.active { display: block; opacity: 1; }
+        
+        /* Custom Range Slider */
+        input[type=range] {
+            -webkit-appearance: none;
+            background: transparent;
+        }
+        input[type=range]::-webkit-slider-runnable-track {
+            width: 100%;
+            height: 6px;
+            cursor: pointer;
+            background: #1e293b;
+            border-radius: 999px;
+            border: 1px solid #334155;
+        }
+        input[type=range]::-webkit-slider-thumb {
+            height: 18px;
+            width: 18px;
+            border-radius: 50%;
+            background: #6366f1;
+            border: 2px solid #e0e7ff;
+            cursor: pointer;
+            -webkit-appearance: none;
+            margin-top: -7px;
+            box-shadow: 0 0 10px rgba(99, 102, 241, 0.6);
+            transition: transform 0.15s ease;
+        }
+        input[type=range]::-webkit-slider-thumb:hover {
+            transform: scale(1.15);
+            background: #818cf8;
+        }
+
+        /* Glassmorphism Cards */
+        .glass-panel {
+            background: rgba(19, 27, 51, 0.65);
+            backdrop-filter: blur(16px);
+            -webkit-backdrop-filter: blur(16px);
+            border: 1px solid rgba(255, 255, 255, 0.08);
+        }
+        .math-box {
+            background: linear-gradient(145deg, rgba(15, 23, 42, 0.9), rgba(11, 16, 33, 0.95));
+            border: 1px solid rgba(99, 102, 241, 0.25);
+            box-shadow: inset 0 2px 12px rgba(0, 0, 0, 0.4);
+        }
+        canvas { touch-action: none; }
+        
+        /* Custom Scrollbar */
+        ::-webkit-scrollbar { width: 8px; height: 8px; }
+        ::-webkit-scrollbar-track { background: #050814; }
+        ::-webkit-scrollbar-thumb { background: #1e293b; border-radius: 4px; }
+        ::-webkit-scrollbar-thumb:hover { background: #334155; }
+    </style>
+</head>
+<body class="text-slate-100 h-full flex flex-col antialiased selection:bg-indigo-500 selection:text-white overflow-x-hidden">
+
+    <!-- Top Navigation Header -->
+    <header class="sticky top-0 z-30 glass-panel border-b border-slate-800/80 px-4 sm:px-8 py-3.5 shadow-2xl">
+        <div class="max-w-7xl mx-auto flex flex-col md:flex-row justify-between items-center gap-3">
+            <!-- Brand & Title -->
+            <div class="flex items-center space-x-3.5">
+                <div class="w-11 h-11 rounded-2xl bg-gradient-to-tr from-indigo-600 to-cyan-500 flex items-center justify-center text-white shadow-lg shadow-indigo-500/30 border border-white/20">
+                    <i class="fa-solid fa-satellite-dish text-lg"></i>
+                </div>
+                <div>
+                    <div class="flex items-center gap-2">
+                        <span class="text-[11px] font-bold uppercase tracking-wider px-2.5 py-0.5 rounded-full bg-indigo-500/20 text-indigo-300 border border-indigo-400/30">
+                            NCERT Class XI • Ch 7
+                        </span>
+                        <span class="text-[11px] font-mono text-cyan-400 bg-cyan-950/60 px-2 py-0.5 rounded border border-cyan-500/20">
+                            Section 7.3
+                        </span>
+                    </div>
+                    <h1 class="text-lg sm:text-xl font-extrabold font-display tracking-tight text-white mt-0.5">
+                        Universal Law of Gravitation
+                    </h1>
+                </div>
+            </div>
+
+            <!-- Educator Badge -->
+            <div class="flex items-center gap-3 bg-slate-900/90 px-4 py-2 rounded-xl border border-slate-700/80 shadow-inner">
+                <div class="flex items-center gap-2 text-xs text-slate-300">
+                    <span class="w-2 h-2 rounded-full bg-emerald-400 animate-pulse"></span>
+                    <span class="text-slate-400">Interactive E-Book</span>
+                </div>
+                <div class="h-4 w-px bg-slate-700"></div>
+                <div class="flex items-center gap-2 text-xs">
+                    <i class="fa-solid fa-chalkboard-user text-indigo-400"></i>
+                    <span class="text-slate-300">Created by: <strong class="text-white font-semibold tracking-wide">Hrishikesh M <span class="text-indigo-400 font-normal">(PGT Physics)</span></strong></span>
+                </div>
+            </div>
+        </div>
+    </header>
+
+    <!-- Interactive Module Segmented Navigation -->
+    <div class="bg-space-900/90 border-b border-slate-800/80 px-4 py-2.5 sticky top-[69px] z-20 backdrop-blur-md">
+        <nav class="max-w-7xl mx-auto flex overflow-x-auto space-x-2 no-scrollbar" id="nav-tabs" aria-label="Module Sections">
+            <button onclick="switchTab('tab-law')" class="tab-btn group px-4 py-2.5 rounded-xl text-xs sm:text-sm font-semibold transition-all duration-200 flex items-center gap-2.5 bg-gradient-to-r from-indigo-600 to-indigo-500 text-white shadow-lg shadow-indigo-600/25 border border-indigo-400/30 whitespace-nowrap" data-target="tab-law">
+                <span class="w-6 h-6 rounded-lg bg-white/15 flex items-center justify-center text-xs font-mono">01</span>
+                <span>Universal Law & Lab</span>
+            </button>
+            <button onclick="switchTab('tab-history')" class="tab-btn group px-4 py-2.5 rounded-xl text-xs sm:text-sm font-semibold transition-all duration-200 flex items-center gap-2.5 bg-slate-800/60 text-slate-300 hover:bg-slate-800 hover:text-white border border-slate-700/50 whitespace-nowrap" data-target="tab-history">
+                <span class="w-6 h-6 rounded-lg bg-slate-700/70 flex items-center justify-center text-xs font-mono text-amber-400">02</span>
+                <span>Historical Derivation</span>
+            </button>
+            <button onclick="switchTab('tab-vector')" class="tab-btn group px-4 py-2.5 rounded-xl text-xs sm:text-sm font-semibold transition-all duration-200 flex items-center gap-2.5 bg-slate-800/60 text-slate-300 hover:bg-slate-800 hover:text-white border border-slate-700/50 whitespace-nowrap" data-target="tab-vector">
+                <span class="w-6 h-6 rounded-lg bg-slate-700/70 flex items-center justify-center text-xs font-mono text-emerald-400">03</span>
+                <span>Vector Form & Superposition</span>
+            </button>
+            <button onclick="switchTab('tab-practice')" class="tab-btn group px-4 py-2.5 rounded-xl text-xs sm:text-sm font-semibold transition-all duration-200 flex items-center gap-2.5 bg-slate-800/60 text-slate-300 hover:bg-slate-800 hover:text-white border border-slate-700/50 whitespace-nowrap" data-target="tab-practice">
+                <span class="w-6 h-6 rounded-lg bg-slate-700/70 flex items-center justify-center text-xs font-mono text-cyan-400">04</span>
+                <span>Practice Numericals (6)</span>
+            </button>
+            <button onclick="switchTab('tab-quiz')" class="tab-btn group px-4 py-2.5 rounded-xl text-xs sm:text-sm font-semibold transition-all duration-200 flex items-center gap-2.5 bg-slate-800/60 text-slate-300 hover:bg-slate-800 hover:text-white border border-slate-700/50 whitespace-nowrap" data-target="tab-quiz">
+                <span class="w-6 h-6 rounded-lg bg-slate-700/70 flex items-center justify-center text-xs font-mono text-purple-400">05</span>
+                <span>Gamified Quiz (5 MCQs)</span>
+            </button>
+        </nav>
+    </div>
+
+    <!-- Main Workspace -->
+    <main class="flex-1 max-w-7xl w-full mx-auto p-4 sm:p-6 lg:p-8 space-y-8">
+
+        <!-- ==========================================
+             TAB 1: UNIVERSAL LAW & INTERACTIVE LAB
+             ========================================== -->
+        <section id="tab-law" class="tab-content active space-y-6">
+            <!-- Hero Banner -->
+            <div class="glass-panel rounded-3xl p-6 sm:p-8 shadow-2xl relative overflow-hidden">
+                <div class="absolute -right-16 -top-16 w-64 h-64 bg-indigo-500/10 rounded-full blur-3xl pointer-events-none"></div>
+                
+                <div class="flex flex-col md:flex-row justify-between items-start md:items-center gap-4 border-b border-slate-800 pb-6 mb-6">
+                    <div>
+                        <span class="text-xs font-bold uppercase tracking-widest text-indigo-400 block mb-1">Fundamental Principle</span>
+                        <h2 class="text-2xl sm:text-3xl font-extrabold font-display text-white">Newton's Universal Law of Gravitation</h2>
+                        <p class="text-slate-400 text-sm mt-1">Published in Newton's famous treatise <em>'Mathematical Principles of Natural Philosophy'</em> (Principia, 1687)</p>
+                    </div>
+                    <div class="bg-indigo-950/60 border border-indigo-500/30 rounded-2xl px-4 py-3 text-right">
+                        <span class="text-[11px] uppercase tracking-wider text-indigo-300 block">Gravitational Constant ($G$)</span>
+                        <span class="text-sm sm:text-base font-mono font-bold text-white">$6.674 \times 10^{-11}\text{ N}\cdot\text{m}^2\text{kg}^{-2}$</span>
+                    </div>
+                </div>
+
+                <!-- 12-Col Grid: Theory + Interactive Lab -->
+                <div class="grid grid-cols-1 lg:grid-cols-12 gap-8 items-start">
+                    
+                    <!-- Left Column: Statement & Equation Breakdown (5 cols) -->
+                    <div class="lg:col-span-5 space-y-5">
+                        <!-- Statement Quote Card -->
+                        <div class="bg-gradient-to-br from-indigo-950/70 to-slate-900/90 border border-indigo-500/30 rounded-2xl p-5 shadow-lg relative">
+                            <i class="fa-solid fa-quote-left text-2xl text-indigo-500/30 absolute top-4 right-4"></i>
+                            <h3 class="text-xs font-bold uppercase tracking-wider text-indigo-400 mb-2 flex items-center gap-2">
+                                <i class="fa-solid fa-book-bookmark"></i> Official NCERT Statement
+                            </h3>
+                            <p class="text-slate-200 text-sm sm:text-base leading-relaxed font-normal">
+                                "Every body in the universe attracts every other body with a force which is <strong class="text-indigo-300 font-semibold">directly proportional to the product of their masses</strong> and <strong class="text-cyan-300 font-semibold">inversely proportional to the square of the distance</strong> between them."
+                            </p>
+                        </div>
+
+                        <!-- Mathematical Equation Box (NCERT Eq 7.5) -->
+                        <div class="math-box rounded-2xl p-5 space-y-3">
+                            <div class="flex justify-between items-center text-xs text-slate-400">
+                                <span class="font-semibold text-slate-300">Magnitude of Gravitational Force</span>
+                                <span class="font-mono text-indigo-400 bg-indigo-950/80 px-2 py-0.5 rounded border border-indigo-500/30">NCERT Eq. (7.5)</span>
+                            </div>
+                            <div class="py-3 text-center text-xl sm:text-2xl text-white overflow-x-auto">
+                                $$|\mathbf{F}| = G \frac{m_1 m_2}{r^2}$$
+                            </div>
+                            <div class="grid grid-cols-2 gap-2.5 pt-2 border-t border-slate-800/80 text-xs">
+                                <div class="bg-slate-900/80 p-2.5 rounded-xl border border-slate-800">
+                                    <span class="text-indigo-400 font-semibold block">$m_1, m_2$</span>
+                                    <span class="text-slate-400">Masses of point bodies ($\text{kg}$)</span>
+                                </div>
+                                <div class="bg-slate-900/80 p-2.5 rounded-xl border border-slate-800">
+                                    <span class="text-cyan-400 font-semibold block">$r$</span>
+                                    <span class="text-slate-400">Distance between centers ($\text{m}$)</span>
+                                </div>
+                            </div>
+                        </div>
+
+                        <!-- Point Mass Caution Box -->
+                        <div class="bg-amber-950/30 border border-amber-500/30 rounded-2xl p-4 flex gap-3.5 items-start">
+                            <div class="bg-amber-500/20 text-amber-400 p-2 rounded-xl mt-0.5">
+                                <i class="fa-solid fa-triangle-exclamation"></i>
+                            </div>
+                            <div class="text-xs text-slate-300 leading-relaxed space-y-1">
+                                <h4 class="font-bold text-amber-300">Important Applicability Note</h4>
+                                <p>Equation (7.5) strictly refers to <strong>point masses</strong>. For finite extended bodies, we must vectorially sum forces over all point-mass elements—though for spherically symmetric bodies of uniform density, the mass can be treated as concentrated at the geometric center.</p>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Right Column: Interactive Physics Simulation (7 cols) -->
+                    <div class="lg:col-span-7 bg-space-950 border border-slate-800 rounded-2xl p-5 sm:p-6 shadow-2xl flex flex-col justify-between space-y-5">
+                        <!-- Lab Header & Live Telemetry -->
+                        <div class="flex flex-col sm:flex-row justify-between items-start sm:items-center gap-4 border-b border-slate-800/80 pb-4">
+                            <div>
+                                <div class="flex items-center gap-2">
+                                    <span class="w-2.5 h-2.5 rounded-full bg-indigo-500 animate-ping"></span>
+                                    <h3 class="font-display font-bold text-white text-base">Interactive Gravitation Force Simulator</h3>
+                                </div>
+                                <p class="text-xs text-slate-400 mt-0.5">Vary $m_1$, $m_2$, and separation $r$ to inspect inverse-square force scaling</p>
+                            </div>
+                            <!-- Live Force Readout -->
+                            <div class="bg-slate-900/90 border border-indigo-500/40 px-4 py-2.5 rounded-xl shadow-inner flex items-center gap-3">
+                                <div class="text-right">
+                                    <span class="text-[10px] uppercase tracking-wider text-slate-400 block">Gravitational Force $|\mathbf{F}|$</span>
+                                    <span id="sim-force-val" class="font-mono font-bold text-base sm:text-lg text-emerald-400">2.67 × 10⁻¹⁰ N</span>
+                                </div>
+                            </div>
+                        </div>
+
+                        <!-- Interactive Canvas Viewport -->
+                        <div class="relative w-full h-72 bg-space-900 rounded-2xl border border-slate-800/90 overflow-hidden shadow-inner">
+                            <canvas id="lawCanvas" class="w-full h-full block"></canvas>
+                            <div class="absolute bottom-3 left-3 bg-slate-950/80 backdrop-blur px-3 py-1 rounded-lg border border-slate-800 text-[11px] text-slate-400 font-mono">
+                                Action-Reaction: $|\mathbf{F}_{12}| = |\mathbf{F}_{21}|$
+                            </div>
+                            <div class="absolute bottom-3 right-3 bg-slate-950/80 backdrop-blur px-3 py-1 rounded-lg border border-slate-800 text-[11px] text-indigo-300 font-mono" id="r-ratio-badge">
+                                Inverse Square Factor: 1/r² = 0.040 m⁻²
+                            </div>
+                        </div>
+
+                        <!-- Parameter Control Sliders -->
+                        <div class="grid grid-cols-1 sm:grid-cols-3 gap-4 bg-slate-900/70 p-4 rounded-2xl border border-slate-800/80">
+                            <!-- Mass 1 Control -->
+                            <div class="bg-space-950/70 p-3.5 rounded-xl border border-slate-800/80 space-y-2">
+                                <div class="flex justify-between items-center text-xs">
+                                    <span class="font-semibold text-indigo-300 flex items-center gap-1.5">
+                                        <span class="w-2.5 h-2.5 rounded-full bg-indigo-500 inline-block"></span> Mass $m_1$
+                                    </span>
+                                    <span id="m1-disp" class="font-mono font-bold text-white bg-indigo-950 px-2 py-0.5 rounded border border-indigo-500/30">20 kg</span>
+                                </div>
+                                <input type="range" id="m1Range" min="5" max="100" step="1" value="20" class="w-full">
+                                <div class="flex justify-between text-[10px] text-slate-500 font-mono">
+                                    <span>5 kg</span><span>100 kg</span>
+                                </div>
+                            </div>
+
+                            <!-- Mass 2 Control -->
+                            <div class="bg-space-950/70 p-3.5 rounded-xl border border-slate-800/80 space-y-2">
+                                <div class="flex justify-between items-center text-xs">
+                                    <span class="font-semibold text-rose-300 flex items-center gap-1.5">
+                                        <span class="w-2.5 h-2.5 rounded-full bg-rose-500 inline-block"></span> Mass $m_2$
+                                    </span>
+                                    <span id="m2-disp" class="font-mono font-bold text-white bg-rose-950 px-2 py-0.5 rounded border border-rose-500/30">50 kg</span>
+                                </div>
+                                <input type="range" id="m2Range" min="5" max="100" step="1" value="50" class="w-full">
+                                <div class="flex justify-between text-[10px] text-slate-500 font-mono">
+                                    <span>5 kg</span><span>100 kg</span>
+                                </div>
+                            </div>
+
+                            <!-- Distance Control -->
+                            <div class="bg-space-950/70 p-3.5 rounded-xl border border-slate-800/80 space-y-2">
+                                <div class="flex justify-between items-center text-xs">
+                                    <span class="font-semibold text-cyan-300 flex items-center gap-1.5">
+                                        <i class="fa-solid fa-arrows-left-right text-cyan-400"></i> Distance $r$
+                                    </span>
+                                    <span id="r-disp" class="font-mono font-bold text-white bg-cyan-950 px-2 py-0.5 rounded border border-cyan-500/30">5.0 m</span>
+                                </div>
+                                <input type="range" id="rRange" min="2" max="12" step="0.5" value="5" class="w-full">
+                                <div class="flex justify-between text-[10px] text-slate-500 font-mono">
+                                    <span>2.0 m</span><span>12.0 m</span>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                </div>
+            </div>
+        </section>
+
+
+        <!-- ==========================================
+             TAB 2: HISTORICAL DERIVATION (MOON & APPLE)
+             ========================================== -->
+        <section id="tab-history" class="tab-content space-y-6">
+            <div class="glass-panel rounded-3xl p-6 sm:p-8 shadow-2xl space-y-8">
+                <!-- Section Header -->
+                <div class="flex flex-col md:flex-row justify-between items-start md:items-center gap-4 border-b border-slate-800 pb-6">
+                    <div>
+                        <span class="text-xs font-bold uppercase tracking-widest text-amber-400 block mb-1">Historical Reasoning & Derivation</span>
+                        <h2 class="text-2xl sm:text-3xl font-extrabold font-display text-white">The Falling Apple & The Orbiting Moon</h2>
+                        <p class="text-slate-400 text-sm mt-1">How Isaac Newton deduced the Inverse-Square Law by comparing terrestrial gravity $g$ with lunar centripetal acceleration $a_m$</p>
+                    </div>
+                    <div class="bg-amber-950/50 border border-amber-500/30 px-4 py-2.5 rounded-2xl flex items-center gap-3">
+                        <i class="fa-solid fa-apple-whole text-2xl text-amber-400"></i>
+                        <div class="text-xs">
+                            <span class="text-amber-200 font-semibold block">Unification of Physics</span>
+                            <span class="text-slate-400">Terrestrial + Celestial Mechanics</span>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Step-by-Step Derivation Cards (Exact NCERT Equations 7.3 & 7.4) -->
+                <div class="grid grid-cols-1 lg:grid-cols-3 gap-6">
+                    
+                    <!-- Step 1: Moon's Centripetal Acceleration -->
+                    <div class="bg-slate-900/75 border border-slate-800 rounded-2xl p-6 flex flex-col justify-between space-y-4">
+                        <div class="space-y-3">
+                            <div class="flex justify-between items-center">
+                                <span class="px-2.5 py-1 rounded-lg bg-amber-500/20 text-amber-300 font-mono text-xs font-bold border border-amber-500/30">Step 01</span>
+                                <span class="text-xs font-mono text-slate-400">NCERT Eq. (7.3)</span>
+                            </div>
+                            <h3 class="text-lg font-bold font-display text-white">Moon's Centripetal Acceleration</h3>
+                            <p class="text-xs sm:text-sm text-slate-300 leading-relaxed">
+                                Newton reasoned that the Moon revolving in a nearly circular orbit of radius $R_m$ around Earth is subject to a centripetal acceleration $a_m$ due to Earth's gravity:
+                            </p>
+                            <div class="math-box rounded-xl p-4 text-center overflow-x-auto">
+                                $$a_m = \frac{V^2}{R_m} = \frac{4\pi^2 R_m}{T^2}$$
+                            </div>
+                            <p class="text-xs text-slate-400 leading-relaxed">
+                                where orbital speed $V$ is related to time period $T$ by the relation:
+                                $$V = \frac{2\pi R_m}{T}$$
+                            </p>
+                        </div>
+                        <div class="bg-space-950 p-3.5 rounded-xl border border-slate-800/80 text-xs space-y-1">
+                            <div class="flex justify-between"><span class="text-slate-400">Orbital Period ($T$):</span><span class="font-mono text-amber-300">$27.3\text{ days} \approx 2.36 \times 10^6\text{ s}$</span></div>
+                            <div class="flex justify-between"><span class="text-slate-400">Lunar Orbit Radius ($R_m$):</span><span class="font-mono text-amber-300">$3.84 \times 10^8\text{ m}$</span></div>
+                        </div>
+                    </div>
+
+                    <!-- Step 2: Numerical Substitution -->
+                    <div class="bg-slate-900/75 border border-slate-800 rounded-2xl p-6 flex flex-col justify-between space-y-4">
+                        <div class="space-y-3">
+                            <div class="flex justify-between items-center">
+                                <span class="px-2.5 py-1 rounded-lg bg-indigo-500/20 text-indigo-300 font-mono text-xs font-bold border border-indigo-500/30">Step 02</span>
+                                <span class="text-xs font-mono text-slate-400">Distance Decay</span>
+                            </div>
+                            <h3 class="text-lg font-bold font-display text-white">Comparing $a_m$ with Surface Gravity $g$</h3>
+                            <p class="text-xs sm:text-sm text-slate-300 leading-relaxed">
+                                Substituting known astronomical values into Equation (7.3) yields a value of $a_m$ much smaller than acceleration due to gravity $g$ at Earth's surface:
+                            </p>
+                            <div class="math-box rounded-xl p-4 text-center overflow-x-auto">
+                                $$a_m = \frac{4 \times \pi^2 \times (3.84 \times 10^8\text{ m})}{(2.36 \times 10^6\text{ s})^2} \approx 0.00272\text{ m s}^{-2}$$
+                            </div>
+                            <p class="text-xs text-slate-400 leading-relaxed">
+                                Meanwhile, at the surface of the Earth (distance $R_E \approx 6.4 \times 10^6\text{ m}$ from Earth's center):
+                                $$g = 9.8\text{ m s}^{-2}$$
+                            </p>
+                        </div>
+                        <div class="bg-indigo-950/40 p-3.5 rounded-xl border border-indigo-500/30 text-xs text-indigo-200">
+                            <i class="fa-solid fa-lightbulb text-amber-400 mr-1"></i> This clearly demonstrates that the force due to Earth's gravity <strong>decreases rapidly with distance</strong>.
+                        </div>
+                    </div>
+
+                    <!-- Step 3: The Inverse-Square Proof -->
+                    <div class="bg-slate-900/75 border border-slate-800 rounded-2xl p-6 flex flex-col justify-between space-y-4">
+                        <div class="space-y-3">
+                            <div class="flex justify-between items-center">
+                                <span class="px-2.5 py-1 rounded-lg bg-emerald-500/20 text-emerald-300 font-mono text-xs font-bold border border-emerald-500/30">Step 03</span>
+                                <span class="text-xs font-mono text-slate-400">NCERT Eq. (7.4)</span>
+                            </div>
+                            <h3 class="text-lg font-bold font-display text-white">The Famous $3600$ Ratio Verification</h3>
+                            <p class="text-xs sm:text-sm text-slate-300 leading-relaxed">
+                                Assuming gravitational force decreases in proportion to the inverse square of distance from Earth's center ($a_m \propto R_m^{-2}$ and $g \propto R_E^{-2}$), we get:
+                            </p>
+                            <div class="math-box rounded-xl p-4 text-center overflow-x-auto">
+                                $$\frac{g}{a_m} = \frac{R_m^2}{R_E^2} \approx \left(\frac{3.84 \times 10^8}{6.4 \times 10^6}\right)^2 = 60^2 = 3600$$
+                            </div>
+                            <p class="text-xs text-slate-400 leading-relaxed">
+                                Taking the ratio of measured accelerations:
+                                $$\frac{9.8\text{ m s}^{-2}}{0.00272\text{ m s}^{-2}} \approx 3600$$
+                            </p>
+                        </div>
+                        <div class="bg-emerald-950/40 p-3.5 rounded-xl border border-emerald-500/30 text-xs text-emerald-200">
+                            <i class="fa-solid fa-circle-check text-emerald-400 mr-1"></i> Exact agreement! This triumph led Newton to propose the Universal Law of Gravitation.
+                        </div>
+                    </div>
+
+                </div>
+            </div>
+        </section>
+
+
+        <!-- ==========================================
+             TAB 3: VECTOR FORM & SUPERPOSITION
+             ========================================== -->
+        <section id="tab-vector" class="tab-content space-y-6">
+            <div class="glass-panel rounded-3xl p-6 sm:p-8 shadow-2xl space-y-8">
+                
+                <!-- Header -->
+                <div class="flex flex-col md:flex-row justify-between items-start md:items-center gap-4 border-b border-slate-800 pb-6">
+                    <div>
+                        <span class="text-xs font-bold uppercase tracking-widest text-emerald-400 block mb-1">Directional Analysis & Multi-Body Systems</span>
+                        <h2 class="text-2xl sm:text-3xl font-extrabold font-display text-white">Vector Form & Principle of Superposition</h2>
+                        <p class="text-slate-400 text-sm mt-1">Complete mathematical representation of NCERT Figures 7.3 & 7.4 with live interactive 2D vector sandbox</p>
+                    </div>
+                    <div class="bg-emerald-950/50 border border-emerald-500/30 px-4 py-2.5 rounded-2xl text-xs font-mono text-emerald-300">
+                        Newton's 3rd Law: $\mathbf{F}_{12} = -\mathbf{F}_{21}$
+                    </div>
+                </div>
+
+                <div class="grid grid-cols-1 lg:grid-cols-12 gap-8 items-start">
+                    
+                    <!-- Left Column: Vector Theory & Superposition Equations (6 cols) -->
+                    <div class="lg:col-span-6 space-y-6">
+                        
+                        <!-- Vector Formulation Card (Fig 7.3) -->
+                        <div class="bg-slate-900/80 border border-slate-800 rounded-2xl p-5 sm:p-6 space-y-4">
+                            <div class="flex justify-between items-center">
+                                <h3 class="text-base sm:text-lg font-bold font-display text-white flex items-center gap-2">
+                                    <i class="fa-solid fa-location-arrow text-emerald-400"></i> 1. Vector Form of Newton's Law
+                                </h3>
+                                <span class="text-xs font-mono text-emerald-400 bg-emerald-950/80 px-2.5 py-0.5 rounded border border-emerald-500/30">Ref: NCERT Fig. 7.3</span>
+                            </div>
+
+                            <p class="text-xs sm:text-sm text-slate-300 leading-relaxed">
+                                Let two point masses $m_1$ and $m_2$ be located at position vectors $\mathbf{r}_1$ and $\mathbf{r}_2$ relative to origin $O$. The displacement vector from $m_1$ to $m_2$ is:
+                                $$\mathbf{r} = \mathbf{r}_2 - \mathbf{r}_1 \quad \text{and unit vector} \quad \hat{\mathbf{r}} = \frac{\mathbf{r}}{|\mathbf{r}|}$$
+                            </p>
+
+                            <div class="math-box rounded-xl p-4 space-y-2 overflow-x-auto">
+                                <span class="text-[11px] text-slate-400 block font-mono">Force on point mass $m_2$ due to $m_1$:</span>
+                                $$\mathbf{F} = G \frac{m_1 m_2}{r^2} (-\hat{\mathbf{r}}) = -G \frac{m_1 m_2}{r^2} \hat{\mathbf{r}} = -G \frac{m_1 m_2}{|\mathbf{r}|^3} \mathbf{r}$$
+                            </div>
+
+                            <ul class="space-y-2 text-xs text-slate-300 pt-1">
+                                <li class="flex items-start gap-2">
+                                    <i class="fa-solid fa-minus text-rose-400 mt-1"></i>
+                                    <span><strong>Why the Negative Sign?</strong> Gravitational force is attractive, meaning the force $\mathbf{F}$ on $m_2$ is directed towards $m_1$ (along $-\mathbf{r}$).</span>
+                                </li>
+                                <li class="flex items-start gap-2">
+                                    <i class="fa-solid fa-code-compare text-cyan-400 mt-1"></i>
+                                    <span><strong>Mutual Attraction:</strong> By Newton's Third Law, gravitational force $\mathbf{F}_{12}$ on body 1 due to 2 and $\mathbf{F}_{21}$ on body 2 due to 1 satisfy:
+                                    $$\mathbf{F}_{12} = -\mathbf{F}_{21}$$</span>
+                                </li>
+                            </ul>
+                        </div>
+
+                        <!-- Principle of Superposition Card (Fig 7.4) -->
+                        <div class="bg-slate-900/80 border border-slate-800 rounded-2xl p-5 sm:p-6 space-y-4">
+                            <div class="flex justify-between items-center">
+                                <h3 class="text-base sm:text-lg font-bold font-display text-white flex items-center gap-2">
+                                    <i class="fa-solid fa-diagram-project text-indigo-400"></i> 2. Principle of Superposition
+                                </h3>
+                                <span class="text-xs font-mono text-indigo-400 bg-indigo-950/80 px-2.5 py-0.5 rounded border border-indigo-500/30">Ref: NCERT Fig. 7.4</span>
+                            </div>
+
+                            <p class="text-xs sm:text-sm text-slate-300 leading-relaxed">
+                                For a collection of point masses ($m_1, m_2, m_3, m_4, \dots$), the total gravitational force on any one mass (say $m_1$) is the <strong>vector sum</strong> of the individual gravitational forces exerted on it by all other point masses independently:
+                            </p>
+
+                            <div class="math-box rounded-xl p-4 overflow-x-auto">
+                                $$\mathbf{F}_1 = \frac{G m_2 m_1}{r_{21}^2}\hat{\mathbf{r}}_{21} + \frac{G m_3 m_1}{r_{31}^2}\hat{\mathbf{r}}_{31} + \frac{G m_4 m_1}{r_{41}^2}\hat{\mathbf{r}}_{41}$$
+                            </div>
+                        </div>
+
+                    </div>
+
+                    <!-- Right Column: Interactive Vector & Superposition Sandbox (6 cols) -->
+                    <div class="lg:col-span-6 bg-space-950 border border-slate-800 rounded-2xl p-5 sm:p-6 shadow-2xl flex flex-col justify-between space-y-4">
+                        <div class="flex flex-col sm:flex-row justify-between items-start sm:items-center gap-3 border-b border-slate-800 pb-4">
+                            <div>
+                                <h3 class="font-display font-bold text-white text-base flex items-center gap-2">
+                                    <i class="fa-solid fa-compass-drafting text-emerald-400"></i> Interactive Vector Sandbox
+                                </h3>
+                                <p class="text-xs text-slate-400 mt-0.5">Drag point masses on the coordinate plane to inspect position & force vectors</p>
+                            </div>
+                            <!-- Mode Switcher: 2-Body (Fig 7.3) vs 3-Body Superposition (Fig 7.4) -->
+                            <div class="flex bg-slate-900 p-1 rounded-xl border border-slate-800 text-xs">
+                                <button id="mode-2body" onclick="setVectorMode('2body')" class="px-3 py-1.5 rounded-lg font-semibold bg-emerald-600 text-white transition-all">
+                                    Fig 7.3 (2-Body)
+                                </button>
+                                <button id="mode-3body" onclick="setVectorMode('3body')" class="px-3 py-1.5 rounded-lg font-semibold text-slate-400 hover:text-white transition-all">
+                                    Fig 7.4 (Superposition)
+                                </button>
+                            </div>
+                        </div>
+
+                        <!-- Canvas -->
+                        <div class="relative w-full h-80 bg-space-900 rounded-2xl border border-slate-800 overflow-hidden cursor-grab active:cursor-grabbing">
+                            <canvas id="vectorCanvas" class="w-full h-full block"></canvas>
+                            <div class="absolute top-3 left-3 bg-slate-950/85 backdrop-blur px-3 py-1.5 rounded-xl border border-slate-800 text-[11px] font-mono text-slate-300 space-y-0.5 pointer-events-none" id="vector-telemetry">
+                                <div>Displacement <span class="text-cyan-400">r = r₂ - r₁</span></div>
+                                <div>Attraction <span class="text-emerald-400">F₁₂ = -F₂₁</span></div>
+                            </div>
+                        </div>
+
+                        <!-- Legend -->
+                        <div class="grid grid-cols-2 sm:grid-cols-3 gap-2.5 text-xs bg-slate-900/70 p-3.5 rounded-xl border border-slate-800">
+                            <div class="flex items-center gap-2">
+                                <span class="w-3 h-3 rounded-full bg-indigo-500 inline-block"></span>
+                                <span class="text-slate-300">Position Vectors $\mathbf{r}_1, \mathbf{r}_2$</span>
+                            </div>
+                            <div class="flex items-center gap-2">
+                                <span class="w-3 h-3 rounded-full bg-cyan-400 inline-block"></span>
+                                <span class="text-slate-300">Displacement $\mathbf{r} = \mathbf{r}_2 - \mathbf{r}_1$</span>
+                            </div>
+                            <div class="flex items-center gap-2 col-span-2 sm:col-span-1">
+                                <span class="w-3 h-3 rounded-full bg-emerald-400 inline-block"></span>
+                                <span class="text-slate-300">Net Force Vector $\mathbf{F}$</span>
+                            </div>
+                        </div>
+                    </div>
+
+                </div>
+            </div>
+        </section>
+
+
+        <!-- ==========================================
+             TAB 4: PRACTICE NUMERICALS (6 PROBLEMS)
+             ========================================== -->
+        <section id="tab-practice" class="tab-content space-y-6">
+            <div class="glass-panel rounded-3xl p-6 sm:p-8 shadow-2xl space-y-6">
+                
+                <div class="flex flex-col md:flex-row justify-between items-start md:items-center gap-4 border-b border-slate-800 pb-6">
+                    <div>
+                        <span class="text-xs font-bold uppercase tracking-widest text-cyan-400 block mb-1">Problem Solving Workbench</span>
+                        <h2 class="text-2xl sm:text-3xl font-extrabold font-display text-white">6 Syllabus-Aligned Numericals (With Solutions)</h2>
+                        <p class="text-slate-400 text-sm mt-1">Includes NCERT Example 7.2 (Equilateral Triangle Centroid) and Vector Gravitation applications</p>
+                    </div>
+                    <div class="flex gap-2">
+                        <button onclick="toggleAllSolutions(true)" class="text-xs bg-slate-800 hover:bg-slate-700 text-slate-200 px-3.5 py-2 rounded-xl border border-slate-700 transition-all">
+                            <i class="fa-solid fa-eye mr-1 text-cyan-400"></i> Expand All
+                        </button>
+                        <button onclick="toggleAllSolutions(false)" class="text-xs bg-slate-800 hover:bg-slate-700 text-slate-200 px-3.5 py-2 rounded-xl border border-slate-700 transition-all">
+                            <i class="fa-solid fa-eye-slash mr-1 text-slate-400"></i> Collapse All
+                        </button>
+                    </div>
+                </div>
+
+                <!-- Grid of 6 Numerical Problems -->
+                <div class="grid grid-cols-1 gap-5">
+
+                    <!-- Problem 1: NCERT Example 7.2 Part (a) -->
+                    <div class="bg-slate-900/75 border border-slate-800 rounded-2xl p-5 sm:p-6 transition-all hover:border-slate-700">
+                        <div class="flex flex-col sm:flex-row justify-between items-start sm:items-center gap-3 mb-3">
+                            <div class="flex items-center gap-3">
+                                <span class="px-3 py-1 rounded-lg bg-cyan-500/20 text-cyan-300 font-mono text-xs font-bold border border-cyan-500/30">Problem 01 • NCERT Ex 7.2(a)</span>
+                                <h3 class="font-bold font-display text-white text-base">Force at the Centroid of an Equilateral Triangle</h3>
+                            </div>
+                            <button onclick="toggleSolution('sol-1')" class="text-xs font-semibold bg-indigo-600/20 hover:bg-indigo-600/30 text-indigo-300 px-3.5 py-1.5 rounded-xl border border-indigo-500/30 transition-all flex items-center gap-1.5">
+                                <i class="fa-solid fa-calculator"></i> View Step-by-Step Solution
+                            </button>
+                        </div>
+                        <p class="text-slate-300 text-sm leading-relaxed">
+                            Three equal masses of $m\text{ kg}$ each are fixed at the vertices $A, B,$ and $C$ of an equilateral triangle $ABC$. What is the net gravitational force acting on a mass $2m$ placed at the centroid $G$ of the triangle? Take $AG = BG = CG = 1\text{ m}$.
+                        </p>
+                        <div id="sol-1" class="solution-panel hidden mt-4 pt-4 border-t border-slate-800/90 space-y-3 text-xs sm:text-sm text-slate-300">
+                            <div class="math-box p-4 rounded-xl space-y-2 overflow-x-auto">
+                                <p class="text-cyan-300 font-semibold">Step-by-Step Vector Resolution:</p>
+                                <p>Choosing axes such that $A$ lies on the positive $Y$-axis ($\hat{\mathbf{j}}$), the angle between $GC$ and positive $X$-axis is $30^\circ$, and between $GB$ and negative $X$-axis is $30^\circ$. The individual forces on mass $2m$ at $G$ are:</p>
+                                $$\mathbf{F}_{GA} = \frac{G m (2m)}{1^2}\hat{\mathbf{j}} = 2Gm^2\hat{\mathbf{j}}$$
+                                $$\mathbf{F}_{GB} = 2Gm^2 \left(-\hat{\mathbf{i}}\cos 30^\circ - \hat{\mathbf{j}}\sin 30^\circ\right)$$
+                                $$\mathbf{F}_{GC} = 2Gm^2 \left(+\hat{\mathbf{i}}\cos 30^\circ - \hat{\mathbf{j}}\sin 30^\circ\right)$$
+                                <p>By the <strong>Principle of Superposition</strong>, the resultant force $\mathbf{F}_R = \mathbf{F}_{GA} + \mathbf{F}_{GB} + \mathbf{F}_{GC}$:</p>
+                                $$\mathbf{F}_R = 2Gm^2\hat{\mathbf{j}} + 2Gm^2\left(-2\hat{\mathbf{j}}\sin 30^\circ\right) = 2Gm^2\hat{\mathbf{j}} - 2Gm^2\hat{\mathbf{j}} = \mathbf{0}$$
+                            </div>
+                            <p class="text-emerald-400 font-semibold"><i class="fa-solid fa-check-circle mr-1"></i> Answer: Net gravitational force at the centroid is $\mathbf{0}\text{ N}$ (also obvious by symmetry!).</p>
+                        </div>
+                    </div>
+
+                    <!-- Problem 2: NCERT Example 7.2 Part (b) -->
+                    <div class="bg-slate-900/75 border border-slate-800 rounded-2xl p-5 sm:p-6 transition-all hover:border-slate-700">
+                        <div class="flex flex-col sm:flex-row justify-between items-start sm:items-center gap-3 mb-3">
+                            <div class="flex items-center gap-3">
+                                <span class="px-3 py-1 rounded-lg bg-cyan-500/20 text-cyan-300 font-mono text-xs font-bold border border-cyan-500/30">Problem 02 • NCERT Ex 7.2(b)</span>
+                                <h3 class="font-bold font-display text-white text-base">Symmetry Breaking by Doubling Vertex Mass</h3>
+                            </div>
+                            <button onclick="toggleSolution('sol-2')" class="text-xs font-semibold bg-indigo-600/20 hover:bg-indigo-600/30 text-indigo-300 px-3.5 py-1.5 rounded-xl border border-indigo-500/30 transition-all flex items-center gap-1.5">
+                                <i class="fa-solid fa-calculator"></i> View Step-by-Step Solution
+                            </button>
+                        </div>
+                        <p class="text-slate-300 text-sm leading-relaxed">
+                            In the same equilateral triangle $ABC$ (with $AG = BG = CG = 1\text{ m}$ and mass $2m$ at centroid $G$), what is the net gravitational force on the centroid mass $2m$ if the mass at vertex $A$ is doubled (i.e., becomes $2m$)?
+                        </p>
+                        <div id="sol-2" class="solution-panel hidden mt-4 pt-4 border-t border-slate-800/90 space-y-3 text-xs sm:text-sm text-slate-300">
+                            <div class="math-box p-4 rounded-xl space-y-2 overflow-x-auto">
+                                <p class="text-cyan-300 font-semibold">Step-by-Step Calculation:</p>
+                                <p>Now the mass at vertex $A$ is $2m$. Thus, the upward force $\mathbf{F}_{GA}$ along $+\hat{\mathbf{j}}$ doubles:</p>
+                                $$\mathbf{F}'_{GA} = \frac{G (2m)(2m)}{1^2}\hat{\mathbf{j}} = 4Gm^2\hat{\mathbf{j}}$$
+                                <p>From Part (a), we already know that the horizontal components of $\mathbf{F}_{GB}$ and $\mathbf{F}_{GC}$ cancel out, and their vertical sum is:</p>
+                                $$\mathbf{F}_{GB} + \mathbf{F}_{GC} = -2Gm^2\hat{\mathbf{j}}$$
+                                <p>Therefore, net resultant force $\mathbf{F}_R$ is:</p>
+                                $$\mathbf{F}_R = \mathbf{F}'_{GA} + \mathbf{F}_{GB} + \mathbf{F}_{GC} = 4Gm^2\hat{\mathbf{j}} - 2Gm^2\hat{\mathbf{j}} = 2Gm^2\hat{\mathbf{j}}$$
+                            </div>
+                            <p class="text-emerald-400 font-semibold"><i class="fa-solid fa-check-circle mr-1"></i> Answer: $\mathbf{F}_R = 2Gm^2\hat{\mathbf{j}}\text{ N}$ (directed along $GA$ towards vertex $A$).</p>
+                        </div>
+                    </div>
+
+                    <!-- Problem 3: 3D Vector Form Calculation -->
+                    <div class="bg-slate-900/75 border border-slate-800 rounded-2xl p-5 sm:p-6 transition-all hover:border-slate-700">
+                        <div class="flex flex-col sm:flex-row justify-between items-start sm:items-center gap-3 mb-3">
+                            <div class="flex items-center gap-3">
+                                <span class="px-3 py-1 rounded-lg bg-indigo-500/20 text-indigo-300 font-mono text-xs font-bold border border-indigo-500/30">Problem 03 • Vector Form</span>
+                                <h3 class="font-bold font-display text-white text-base">Gravitational Force in Cartesian Vector Notation</h3>
+                            </div>
+                            <button onclick="toggleSolution('sol-3')" class="text-xs font-semibold bg-indigo-600/20 hover:bg-indigo-600/30 text-indigo-300 px-3.5 py-1.5 rounded-xl border border-indigo-500/30 transition-all flex items-center gap-1.5">
+                                <i class="fa-solid fa-calculator"></i> View Step-by-Step Solution
+                            </button>
+                        </div>
+                        <p class="text-slate-300 text-sm leading-relaxed">
+                            A point mass $m_1 = 100\text{ kg}$ is placed at position $\mathbf{r}_1 = (\hat{\mathbf{i}} + 2\hat{\mathbf{j}})\text{ m}$ and another point mass $m_2 = 200\text{ kg}$ is at $\mathbf{r}_2 = (4\hat{\mathbf{i}} + 6\hat{\mathbf{j}})\text{ m}$. Find the gravitational force vector $\mathbf{F}_{21}$ on $m_2$ due to $m_1$. ($G = 6.67 \times 10^{-11}\text{ N}\cdot\text{m}^2\text{kg}^{-2}$).
+                        </p>
+                        <div id="sol-3" class="solution-panel hidden mt-4 pt-4 border-t border-slate-800/90 space-y-3 text-xs sm:text-sm text-slate-300">
+                            <div class="math-box p-4 rounded-xl space-y-2 overflow-x-auto">
+                                <p>Displacement vector from $m_1$ to $m_2$:</p>
+                                $$\mathbf{r} = \mathbf{r}_2 - \mathbf{r}_1 = (4 - 1)\hat{\mathbf{i}} + (6 - 2)\hat{\mathbf{j}} = (3\hat{\mathbf{i}} + 4\hat{\mathbf{j}})\text{ m}$$
+                                <p>Magnitude of separation:</p>
+                                $$|\mathbf{r}| = \sqrt{3^2 + 4^2} = 5\text{ m}$$
+                                <p>Using NCERT vector equation $\mathbf{F}_{21} = -G \frac{m_1 m_2}{|\mathbf{r}|^3}\mathbf{r}$:</p>
+                                $$\mathbf{F}_{21} = -\frac{6.67 \times 10^{-11} \times 100 \times 200}{5^3}(3\hat{\mathbf{i}} + 4\hat{\mathbf{j}}) = -1.067 \times 10^{-8}(3\hat{\mathbf{i}} + 4\hat{\mathbf{j}})\text{ N}$$
+                            </div>
+                            <p class="text-emerald-400 font-semibold"><i class="fa-solid fa-check-circle mr-1"></i> Answer: $\mathbf{F}_{21} = -(3.20\hat{\mathbf{i}} + 4.27\hat{\mathbf{j}}) \times 10^{-8}\text{ N}$.</p>
+                        </div>
+                    </div>
+
+                    <!-- Problem 4: Gravitational Null Point -->
+                    <div class="bg-slate-900/75 border border-slate-800 rounded-2xl p-5 sm:p-6 transition-all hover:border-slate-700">
+                        <div class="flex flex-col sm:flex-row justify-between items-start sm:items-center gap-3 mb-3">
+                            <div class="flex items-center gap-3">
+                                <span class="px-3 py-1 rounded-lg bg-indigo-500/20 text-indigo-300 font-mono text-xs font-bold border border-indigo-500/30">Problem 04 • Equilibrium</span>
+                                <h3 class="font-bold font-display text-white text-base">Zero-Gravity (Null Point) Between Two Masses</h3>
+                            </div>
+                            <button onclick="toggleSolution('sol-4')" class="text-xs font-semibold bg-indigo-600/20 hover:bg-indigo-600/30 text-indigo-300 px-3.5 py-1.5 rounded-xl border border-indigo-500/30 transition-all flex items-center gap-1.5">
+                                <i class="fa-solid fa-calculator"></i> View Step-by-Step Solution
+                            </button>
+                        </div>
+                        <p class="text-slate-300 text-sm leading-relaxed">
+                            Two spherical bodies of masses $M$ and $9M$ are separated by a center-to-center distance $d = 12\text{ m}$. At what distance $x$ from the smaller mass $M$ along the line joining them will a test mass $m_0$ experience zero net gravitational force?
+                        </p>
+                        <div id="sol-4" class="solution-panel hidden mt-4 pt-4 border-t border-slate-800/90 space-y-3 text-xs sm:text-sm text-slate-300">
+                            <div class="math-box p-4 rounded-xl space-y-2 overflow-x-auto">
+                                <p>For net gravitational force on $m_0$ to be zero, attractive pulls from $M$ and $9M$ must be equal and opposite:</p>
+                                $$G\frac{M m_0}{x^2} = G\frac{(9M) m_0}{(d - x)^2} \implies \frac{1}{x^2} = \frac{9}{(d - x)^2}$$
+                                <p>Taking positive square root (since $0 < x < d$):</p>
+                                $$\frac{1}{x} = \frac{3}{d - x} \implies d - x = 3x \implies 4x = d \implies x = \frac{d}{4}$$
+                                $$x = \frac{12\text{ m}}{4} = 3.0\text{ m}$$
+                            </div>
+                            <p class="text-emerald-400 font-semibold"><i class="fa-solid fa-check-circle mr-1"></i> Answer: At $x = 3.0\text{ m}$ from mass $M$ (and $9.0\text{ m}$ from mass $9M$).</p>
+                        </div>
+                    </div>
+
+                    <!-- Problem 5: Superposition on a Square Vertex -->
+                    <div class="bg-slate-900/75 border border-slate-800 rounded-2xl p-5 sm:p-6 transition-all hover:border-slate-700">
+                        <div class="flex flex-col sm:flex-row justify-between items-start sm:items-center gap-3 mb-3">
+                            <div class="flex items-center gap-3">
+                                <span class="px-3 py-1 rounded-lg bg-emerald-500/20 text-emerald-300 font-mono text-xs font-bold border border-emerald-500/30">Problem 05 • Superposition</span>
+                                <h3 class="font-bold font-display text-white text-base">Four Identical Masses at the Corners of a Square</h3>
+                            </div>
+                            <button onclick="toggleSolution('sol-5')" class="text-xs font-semibold bg-indigo-600/20 hover:bg-indigo-600/30 text-indigo-300 px-3.5 py-1.5 rounded-xl border border-indigo-500/30 transition-all flex items-center gap-1.5">
+                                <i class="fa-solid fa-calculator"></i> View Step-by-Step Solution
+                            </button>
+                        </div>
+                        <p class="text-slate-300 text-sm leading-relaxed">
+                            Four point masses each of mass $m$ are placed at the four corners of a square of side $a$. Find the magnitude of the resultant gravitational force on any one of the masses due to the remaining three masses.
+                        </p>
+                        <div id="sol-5" class="solution-panel hidden mt-4 pt-4 border-t border-slate-800/90 space-y-3 text-xs sm:text-sm text-slate-300">
+                            <div class="math-box p-4 rounded-xl space-y-2 overflow-x-auto">
+                                <p>Consider a corner mass $m$. The two adjacent masses at distance $a$ exert perpendicular forces of magnitude $F_1 = F_2 = \frac{Gm^2}{a^2}$.</p>
+                                <p>Their resultant along the diagonal is:</p>
+                                $$F_{12} = \sqrt{F_1^2 + F_2^2} = \sqrt{2}\frac{Gm^2}{a^2}$$
+                                <p>The mass at the opposite diagonal corner is at distance $r_d = \sqrt{2}a$, exerting force along the same diagonal:</p>
+                                $$F_3 = \frac{Gm^2}{(\sqrt{2}a)^2} = \frac{1}{2}\frac{Gm^2}{a^2}$$
+                                <p>Total force along the diagonal towards the center of the square:</p>
+                                $$F_{\text{net}} = F_{12} + F_3 = \left(\sqrt{2} + \frac{1}{2}\right)\frac{Gm^2}{a^2} = \left(\frac{2\sqrt{2} + 1}{2}\right)\frac{Gm^2}{a^2}$$
+                            </div>
+                            <p class="text-emerald-400 font-semibold"><i class="fa-solid fa-check-circle mr-1"></i> Answer: $F_{\text{net}} = \left(\frac{2\sqrt{2} + 1}{2}\right)\frac{Gm^2}{a^2} \approx 1.914\frac{Gm^2}{a^2}$ directed towards the center.</p>
+                        </div>
+                    </div>
+
+                    <!-- Problem 6: Mass Partition Optimization -->
+                    <div class="bg-slate-900/75 border border-slate-800 rounded-2xl p-5 sm:p-6 transition-all hover:border-slate-700">
+                        <div class="flex flex-col sm:flex-row justify-between items-start sm:items-center gap-3 mb-3">
+                            <div class="flex items-center gap-3">
+                                <span class="px-3 py-1 rounded-lg bg-amber-500/20 text-amber-300 font-mono text-xs font-bold border border-amber-500/30">Problem 06 • HOTS</span>
+                                <h3 class="font-bold font-display text-white text-base">Condition for Maximum Gravitational Attraction</h3>
+                            </div>
+                            <button onclick="toggleSolution('sol-6')" class="text-xs font-semibold bg-indigo-600/20 hover:bg-indigo-600/30 text-indigo-300 px-3.5 py-1.5 rounded-xl border border-indigo-500/30 transition-all flex items-center gap-1.5">
+                                <i class="fa-solid fa-calculator"></i> View Step-by-Step Solution
+                            </button>
+                        </div>
+                        <p class="text-slate-300 text-sm leading-relaxed">
+                            A total mass $M$ is split into two parts $m$ and $(M - m)$, which are then separated by a fixed distance $r$. For what ratio $\frac{m}{M}$ will the gravitational force of attraction between the two parts be maximum?
+                        </p>
+                        <div id="sol-6" class="solution-panel hidden mt-4 pt-4 border-t border-slate-800/90 space-y-3 text-xs sm:text-sm text-slate-300">
+                            <div class="math-box p-4 rounded-xl space-y-2 overflow-x-auto">
+                                <p>Gravitational force between the two parts at fixed distance $r$ is:</p>
+                                $$F(m) = \frac{G}{r^2} m(M - m) = \frac{G}{r^2}(Mm - m^2)$$
+                                <p>For $F$ to be maximum, differentiate $F$ with respect to $m$ and equate to zero:</p>
+                                $$\frac{dF}{dm} = \frac{G}{r^2}(M - 2m) = 0 \implies M - 2m = 0 \implies \frac{m}{M} = \frac{1}{2}$$
+                            </div>
+                            <p class="text-emerald-400 font-semibold"><i class="fa-solid fa-check-circle mr-1"></i> Answer: $\frac{m}{M} = \frac{1}{2}$ (force is maximum when mass is divided into two equal halves).</p>
+                        </div>
+                    </div>
+
+                </div>
+            </div>
+        </section>
+
+
+        <!-- ==========================================
+             TAB 5: GAMIFIED QUIZ (5 MCQs)
+             ========================================== -->
+        <section id="tab-quiz" class="tab-content space-y-6">
+            <div class="glass-panel rounded-3xl p-6 sm:p-8 shadow-2xl max-w-4xl mx-auto space-y-6">
+                
+                <!-- Quiz Header & Gamified HUD -->
+                <div class="flex flex-col sm:flex-row justify-between items-start sm:items-center gap-4 border-b border-slate-800 pb-6">
+                    <div class="flex items-center gap-3.5">
+                        <div class="w-12 h-12 rounded-2xl bg-purple-500/20 border border-purple-500/40 flex items-center justify-center text-purple-400 text-xl shadow-lg">
+                            <i class="fa-solid fa-trophy"></i>
+                        </div>
+                        <div>
+                            <span class="text-xs font-bold uppercase tracking-widest text-purple-400 block">Interactive Assessment</span>
+                            <h2 class="text-2xl font-extrabold font-display text-white">Gravitation Mastery Arena</h2>
+                        </div>
+                    </div>
+
+                    <!-- Score & Progress HUD -->
+                    <div class="flex items-center gap-3 w-full sm:w-auto justify-end">
+                        <div class="bg-slate-900 border border-slate-800 px-4 py-2 rounded-2xl text-center">
+                            <span class="text-[10px] uppercase tracking-wider text-slate-400 block">Streak</span>
+                            <span id="quiz-streak" class="font-mono font-bold text-amber-400 text-sm"><i class="fa-solid fa-fire mr-1"></i>0</span>
+                        </div>
+                        <div class="bg-purple-950/60 border border-purple-500/40 px-5 py-2 rounded-2xl text-center">
+                            <span class="text-[10px] uppercase tracking-wider text-purple-300 block">Total Score</span>
+                            <span id="quiz-score" class="font-mono font-bold text-white text-base">0 / 5</span>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Progress Bar -->
+                <div class="w-full bg-slate-900 h-2 rounded-full overflow-hidden border border-slate-800">
+                    <div id="quiz-progress-bar" class="bg-gradient-to-r from-indigo-500 via-purple-500 to-pink-500 h-full w-1/5 transition-all duration-300"></div>
+                </div>
+
+                <!-- Quiz Questions Container -->
+                <div id="quiz-container" class="space-y-6 pt-2">
+
+                    <!-- Q1 -->
+                    <div class="quiz-question space-y-5" data-q="0">
+                        <div class="flex justify-between items-center text-xs font-mono text-slate-400">
+                            <span>QUESTION 01 OF 05</span>
+                            <span class="text-indigo-400">+100 XP</span>
+                        </div>
+                        <h3 class="text-lg sm:text-xl font-bold text-white leading-snug">
+                            In Newton's historical derivation, what approximate numerical ratio did he obtain for $\dfrac{g}{a_m} = \dfrac{R_m^2}{R_E^2}$?
+                        </h3>
+                        <div class="grid grid-cols-1 sm:grid-cols-2 gap-3.5">
+                            <button onclick="checkAnswer(0, 0, this)" class="quiz-opt text-left p-4 rounded-2xl bg-slate-900/90 border border-slate-800 hover:border-indigo-500/60 text-sm text-slate-200 transition-all flex items-center gap-3">
+                                <span class="w-7 h-7 rounded-lg bg-slate-800 font-mono text-xs flex items-center justify-center text-slate-400">A</span>
+                                <span>$60$</span>
+                            </button>
+                            <button onclick="checkAnswer(0, 1, this)" class="quiz-opt text-left p-4 rounded-2xl bg-slate-900/90 border border-slate-800 hover:border-indigo-500/60 text-sm text-slate-200 transition-all flex items-center gap-3">
+                                <span class="w-7 h-7 rounded-lg bg-slate-800 font-mono text-xs flex items-center justify-center text-slate-400">B</span>
+                                <span>$3600$</span>
+                            </button>
+                            <button onclick="checkAnswer(0, 2, this)" class="quiz-opt text-left p-4 rounded-2xl bg-slate-900/90 border border-slate-800 hover:border-indigo-500/60 text-sm text-slate-200 transition-all flex items-center gap-3">
+                                <span class="w-7 h-7 rounded-lg bg-slate-800 font-mono text-xs flex items-center justify-center text-slate-400">C</span>
+                                <span>$9.8$</span>
+                            </button>
+                            <button onclick="checkAnswer(0, 3, this)" class="quiz-opt text-left p-4 rounded-2xl bg-slate-900/90 border border-slate-800 hover:border-indigo-500/60 text-sm text-slate-200 transition-all flex items-center gap-3">
+                                <span class="w-7 h-7 rounded-lg bg-slate-800 font-mono text-xs flex items-center justify-center text-slate-400">D</span>
+                                <span>$27.3$</span>
+                            </button>
+                        </div>
+                        <div class="quiz-feedback hidden p-4 rounded-2xl border text-xs sm:text-sm"></div>
+                        <div class="quiz-next-wrap hidden flex justify-end">
+                            <button onclick="nextQuestion(0)" class="bg-indigo-600 hover:bg-indigo-500 text-white font-semibold px-5 py-2.5 rounded-xl text-xs sm:text-sm transition-all flex items-center gap-2">
+                                Next Question <i class="fa-solid fa-arrow-right"></i>
+                            </button>
+                        </div>
+                    </div>
+
+                    <!-- Q2 -->
+                    <div class="quiz-question space-y-5 hidden" data-q="1">
+                        <div class="flex justify-between items-center text-xs font-mono text-slate-400">
+                            <span>QUESTION 02 OF 05</span>
+                            <span class="text-indigo-400">+100 XP</span>
+                        </div>
+                        <h3 class="text-lg sm:text-xl font-bold text-white leading-snug">
+                            Which of the following correctly expresses the vector gravitational force $\mathbf{F}$ on point mass $m_2$ due to $m_1$, where $\mathbf{r} = \mathbf{r}_2 - \mathbf{r}_1$?
+                        </h3>
+                        <div class="grid grid-cols-1 sm:grid-cols-2 gap-3.5">
+                            <button onclick="checkAnswer(1, 0, this)" class="quiz-opt text-left p-4 rounded-2xl bg-slate-900/90 border border-slate-800 hover:border-indigo-500/60 text-sm text-slate-200 transition-all flex items-center gap-3">
+                                <span class="w-7 h-7 rounded-lg bg-slate-800 font-mono text-xs flex items-center justify-center text-slate-400">A</span>
+                                <span>$\mathbf{F} = -G\dfrac{m_1 m_2}{|\mathbf{r}|^3}\mathbf{r}$</span>
+                            </button>
+                            <button onclick="checkAnswer(1, 1, this)" class="quiz-opt text-left p-4 rounded-2xl bg-slate-900/90 border border-slate-800 hover:border-indigo-500/60 text-sm text-slate-200 transition-all flex items-center gap-3">
+                                <span class="w-7 h-7 rounded-lg bg-slate-800 font-mono text-xs flex items-center justify-center text-slate-400">B</span>
+                                <span>$\mathbf{F} = +G\dfrac{m_1 m_2}{|\mathbf{r}|^2}\mathbf{r}$</span>
+                            </button>
+                            <button onclick="checkAnswer(1, 2, this)" class="quiz-opt text-left p-4 rounded-2xl bg-slate-900/90 border border-slate-800 hover:border-indigo-500/60 text-sm text-slate-200 transition-all flex items-center gap-3">
+                                <span class="w-7 h-7 rounded-lg bg-slate-800 font-mono text-xs flex items-center justify-center text-slate-400">C</span>
+                                <span>$\mathbf{F} = -G\dfrac{m_1 m_2}{|\mathbf{r}|}\hat{\mathbf{r}}$</span>
+                            </button>
+                            <button onclick="checkAnswer(1, 3, this)" class="quiz-opt text-left p-4 rounded-2xl bg-slate-900/90 border border-slate-800 hover:border-indigo-500/60 text-sm text-slate-200 transition-all flex items-center gap-3">
+                                <span class="w-7 h-7 rounded-lg bg-slate-800 font-mono text-xs flex items-center justify-center text-slate-400">D</span>
+                                <span>$\mathbf{F} = +G\dfrac{m_1 m_2}{|\mathbf{r}|^3}\hat{\mathbf{r}}$</span>
+                            </button>
+                        </div>
+                        <div class="quiz-feedback hidden p-4 rounded-2xl border text-xs sm:text-sm"></div>
+                        <div class="quiz-next-wrap hidden flex justify-end">
+                            <button onclick="nextQuestion(1)" class="bg-indigo-600 hover:bg-indigo-500 text-white font-semibold px-5 py-2.5 rounded-xl text-xs sm:text-sm transition-all flex items-center gap-2">
+                                Next Question <i class="fa-solid fa-arrow-right"></i>
+                            </button>
+                        </div>
+                    </div>
+
+                    <!-- Q3 -->
+                    <div class="quiz-question space-y-5 hidden" data-q="2">
+                        <div class="flex justify-between items-center text-xs font-mono text-slate-400">
+                            <span>QUESTION 03 OF 05</span>
+                            <span class="text-indigo-400">+100 XP</span>
+                        </div>
+                        <h3 class="text-lg sm:text-xl font-bold text-white leading-snug">
+                            What is the dimensional formula of the Universal Gravitational Constant $G$?
+                        </h3>
+                        <div class="grid grid-cols-1 sm:grid-cols-2 gap-3.5">
+                            <button onclick="checkAnswer(2, 0, this)" class="quiz-opt text-left p-4 rounded-2xl bg-slate-900/90 border border-slate-800 hover:border-indigo-500/60 text-sm text-slate-200 transition-all flex items-center gap-3">
+                                <span class="w-7 h-7 rounded-lg bg-slate-800 font-mono text-xs flex items-center justify-center text-slate-400">A</span>
+                                <span>$[\text{M}^1 \text{L}^3 \text{T}^{-2}]$</span>
+                            </button>
+                            <button onclick="checkAnswer(2, 1, this)" class="quiz-opt text-left p-4 rounded-2xl bg-slate-900/90 border border-slate-800 hover:border-indigo-500/60 text-sm text-slate-200 transition-all flex items-center gap-3">
+                                <span class="w-7 h-7 rounded-lg bg-slate-800 font-mono text-xs flex items-center justify-center text-slate-400">B</span>
+                                <span>$[\text{M}^{-1} \text{L}^3 \text{T}^{-2}]$</span>
+                            </button>
+                            <button onclick="checkAnswer(2, 2, this)" class="quiz-opt text-left p-4 rounded-2xl bg-slate-900/90 border border-slate-800 hover:border-indigo-500/60 text-sm text-slate-200 transition-all flex items-center gap-3">
+                                <span class="w-7 h-7 rounded-lg bg-slate-800 font-mono text-xs flex items-center justify-center text-slate-400">C</span>
+                                <span>$[\text{M}^{-1} \text{L}^2 \text{T}^{-2}]$</span>
+                            </button>
+                            <button onclick="checkAnswer(2, 3, this)" class="quiz-opt text-left p-4 rounded-2xl bg-slate-900/90 border border-slate-800 hover:border-indigo-500/60 text-sm text-slate-200 transition-all flex items-center gap-3">
+                                <span class="w-7 h-7 rounded-lg bg-slate-800 font-mono text-xs flex items-center justify-center text-slate-400">D</span>
+                                <span>$[\text{M}^{-2} \text{L}^3 \text{T}^{-1}]$</span>
+                            </button>
+                        </div>
+                        <div class="quiz-feedback hidden p-4 rounded-2xl border text-xs sm:text-sm"></div>
+                        <div class="quiz-next-wrap hidden flex justify-end">
+                            <button onclick="nextQuestion(2)" class="bg-indigo-600 hover:bg-indigo-500 text-white font-semibold px-5 py-2.5 rounded-xl text-xs sm:text-sm transition-all flex items-center gap-2">
+                                Next Question <i class="fa-solid fa-arrow-right"></i>
+                            </button>
+                        </div>
+                    </div>
+
+                    <!-- Q4 -->
+                    <div class="quiz-question space-y-5 hidden" data-q="3">
+                        <div class="flex justify-between items-center text-xs font-mono text-slate-400">
+                            <span>QUESTION 04 OF 05</span>
+                            <span class="text-indigo-400">+100 XP</span>
+                        </div>
+                        <h3 class="text-lg sm:text-xl font-bold text-white leading-snug">
+                            Three equal masses $m$ are placed at vertices of an equilateral triangle. What is the gravitational force on a mass $2m$ placed at its centroid $G$?
+                        </h3>
+                        <div class="grid grid-cols-1 sm:grid-cols-2 gap-3.5">
+                            <button onclick="checkAnswer(3, 0, this)" class="quiz-opt text-left p-4 rounded-2xl bg-slate-900/90 border border-slate-800 hover:border-indigo-500/60 text-sm text-slate-200 transition-all flex items-center gap-3">
+                                <span class="w-7 h-7 rounded-lg bg-slate-800 font-mono text-xs flex items-center justify-center text-slate-400">A</span>
+                                <span>$6Gm^2\text{ N}$</span>
+                            </button>
+                            <button onclick="checkAnswer(3, 1, this)" class="quiz-opt text-left p-4 rounded-2xl bg-slate-900/90 border border-slate-800 hover:border-indigo-500/60 text-sm text-slate-200 transition-all flex items-center gap-3">
+                                <span class="w-7 h-7 rounded-lg bg-slate-800 font-mono text-xs flex items-center justify-center text-slate-400">B</span>
+                                <span>$2\sqrt{3}Gm^2\text{ N}$</span>
+                            </button>
+                            <button onclick="checkAnswer(3, 2, this)" class="quiz-opt text-left p-4 rounded-2xl bg-slate-900/90 border border-slate-800 hover:border-indigo-500/60 text-sm text-slate-200 transition-all flex items-center gap-3">
+                                <span class="w-7 h-7 rounded-lg bg-slate-800 font-mono text-xs flex items-center justify-center text-slate-400">C</span>
+                                <span>$\mathbf{0}\text{ N}$</span>
+                            </button>
+                            <button onclick="checkAnswer(3, 3, this)" class="quiz-opt text-left p-4 rounded-2xl bg-slate-900/90 border border-slate-800 hover:border-indigo-500/60 text-sm text-slate-200 transition-all flex items-center gap-3">
+                                <span class="w-7 h-7 rounded-lg bg-slate-800 font-mono text-xs flex items-center justify-center text-slate-400">D</span>
+                                <span>$2Gm^2\text{ N}$</span>
+                            </button>
+                        </div>
+                        <div class="quiz-feedback hidden p-4 rounded-2xl border text-xs sm:text-sm"></div>
+                        <div class="quiz-next-wrap hidden flex justify-end">
+                            <button onclick="nextQuestion(3)" class="bg-indigo-600 hover:bg-indigo-500 text-white font-semibold px-5 py-2.5 rounded-xl text-xs sm:text-sm transition-all flex items-center gap-2">
+                                Next Question <i class="fa-solid fa-arrow-right"></i>
+                            </button>
+                        </div>
+                    </div>
+
+                    <!-- Q5 -->
+                    <div class="quiz-question space-y-5 hidden" data-q="4">
+                        <div class="flex justify-between items-center text-xs font-mono text-slate-400">
+                            <span>QUESTION 05 OF 05</span>
+                            <span class="text-indigo-400">+100 XP</span>
+                        </div>
+                        <h3 class="text-lg sm:text-xl font-bold text-white leading-snug">
+                            If both masses $m_1$ and $m_2$ are doubled and the distance $r$ between them is halved, the gravitational force between them becomes:
+                        </h3>
+                        <div class="grid grid-cols-1 sm:grid-cols-2 gap-3.5">
+                            <button onclick="checkAnswer(4, 0, this)" class="quiz-opt text-left p-4 rounded-2xl bg-slate-900/90 border border-slate-800 hover:border-indigo-500/60 text-sm text-slate-200 transition-all flex items-center gap-3">
+                                <span class="w-7 h-7 rounded-lg bg-slate-800 font-mono text-xs flex items-center justify-center text-slate-400">A</span>
+                                <span>$4\text{ times}$</span>
+                            </button>
+                            <button onclick="checkAnswer(4, 1, this)" class="quiz-opt text-left p-4 rounded-2xl bg-slate-900/90 border border-slate-800 hover:border-indigo-500/60 text-sm text-slate-200 transition-all flex items-center gap-3">
+                                <span class="w-7 h-7 rounded-lg bg-slate-800 font-mono text-xs flex items-center justify-center text-slate-400">B</span>
+                                <span>$8\text{ times}$</span>
+                            </button>
+                            <button onclick="checkAnswer(4, 2, this)" class="quiz-opt text-left p-4 rounded-2xl bg-slate-900/90 border border-slate-800 hover:border-indigo-500/60 text-sm text-slate-200 transition-all flex items-center gap-3">
+                                <span class="w-7 h-7 rounded-lg bg-slate-800 font-mono text-xs flex items-center justify-center text-slate-400">C</span>
+                                <span>$16\text{ times}$</span>
+                            </button>
+                            <button onclick="checkAnswer(4, 3, this)" class="quiz-opt text-left p-4 rounded-2xl bg-slate-900/90 border border-slate-800 hover:border-indigo-500/60 text-sm text-slate-200 transition-all flex items-center gap-3">
+                                <span class="w-7 h-7 rounded-lg bg-slate-800 font-mono text-xs flex items-center justify-center text-slate-400">D</span>
+                                <span>Unchanged</span>
+                            </button>
+                        </div>
+                        <div class="quiz-feedback hidden p-4 rounded-2xl border text-xs sm:text-sm"></div>
+                        <div class="quiz-next-wrap hidden flex justify-end">
+                            <button onclick="nextQuestion(4)" class="bg-emerald-600 hover:bg-emerald-500 text-white font-semibold px-5 py-2.5 rounded-xl text-xs sm:text-sm transition-all flex items-center gap-2">
+                                Finish & View Results <i class="fa-solid fa-flag-checkered"></i>
+                            </button>
+                        </div>
+                    </div>
+
+                    <!-- Quiz Completion Screen -->
+                    <div id="quiz-complete" class="hidden text-center space-y-5 py-8">
+                        <div class="w-20 h-20 mx-auto rounded-3xl bg-gradient-to-tr from-indigo-600 to-purple-500 flex items-center justify-center text-white text-4xl shadow-2xl shadow-indigo-500/40">
+                            <i class="fa-solid fa-award"></i>
+                        </div>
+                        <div>
+                            <h3 class="text-2xl sm:text-3xl font-extrabold font-display text-white">Assessment Complete!</h3>
+                            <p id="final-score-text" class="text-slate-300 text-sm sm:text-base mt-2"></p>
+                        </div>
+                        <button onclick="resetQuiz()" class="bg-indigo-600 hover:bg-indigo-500 text-white font-semibold px-6 py-3 rounded-xl transition-all shadow-lg shadow-indigo-600/30 inline-flex items-center gap-2 text-sm">
+                            <i class="fa-solid fa-rotate-right"></i> Play Again
+                        </button>
+                    </div>
+
+                </div>
+            </div>
+        </section>
+
+    </main>
+
+    <!-- Footer -->
+    <footer class="border-t border-slate-800/80 bg-space-950/90 py-4 px-6 text-center text-xs text-slate-400 mt-auto">
+        <div class="max-w-7xl mx-auto flex flex-col sm:flex-row justify-between items-center gap-2">
+            <span>NCERT Class 11 Physics Interactive E-Book • Chapter 7: Gravitation</span>
+            <span>Designed & Conceptualized by <strong class="text-indigo-300 font-semibold">Hrishikesh M (PGT Physics)</strong></span>
+        </div>
+    </footer>
+
+    <!-- Application Scripts -->
+    <script>
+        // Re-typeset MathJax dynamically when hidden tabs or solutions become visible
+        function renderMath() {
+            if (window.MathJax && window.MathJax.typesetPromise) {
+                window.MathJax.typesetPromise().catch(err => console.warn('MathJax typeset warning:', err));
+            }
+        }
+
+        // Tab Switching Logic
+        function switchTab(targetId) {
+            document.querySelectorAll('.tab-content').forEach(el => el.classList.remove('active'));
+            document.querySelectorAll('.tab-btn').forEach(btn => {
+                btn.className = "tab-btn group px-4 py-2.5 rounded-xl text-xs sm:text-sm font-semibold transition-all duration-200 flex items-center gap-2.5 bg-slate-800/60 text-slate-300 hover:bg-slate-800 hover:text-white border border-slate-700/50 whitespace-nowrap";
+            });
+
+            const targetEl = document.getElementById(targetId);
+            if (targetEl) targetEl.classList.add('active');
+
+            const activeBtn = document.querySelector(`[data-target="${targetId}"]`);
+            if (activeBtn) {
+                activeBtn.className = "tab-btn group px-4 py-2.5 rounded-xl text-xs sm:text-sm font-semibold transition-all duration-200 flex items-center gap-2.5 bg-gradient-to-r from-indigo-600 to-indigo-500 text-white shadow-lg shadow-indigo-600/25 border border-indigo-400/30 whitespace-nowrap";
+            }
+
+            if (targetId === 'tab-law') setTimeout(initLawSim, 50);
+            if (targetId === 'tab-vector') setTimeout(initVectorSim, 50);
+            renderMath();
+        }
+
+        // Practice Numericals Solution Toggle
+        function toggleSolution(id) {
+            const el = document.getElementById(id);
+            if (!el) return;
+            el.classList.toggle('hidden');
+            renderMath();
+        }
+
+        function toggleAllSolutions(show) {
+            document.querySelectorAll('.solution-panel').forEach(el => {
+                if (show) el.classList.remove('hidden');
+                else el.classList.add('hidden');
+            });
+            renderMath();
+        }
+
+        // ==========================================
+        // TAB 1: UNIVERSAL LAW SIMULATION
+        // ==========================================
+        const G_VAL = 6.674e-11;
+
+        function initLawSim() {
+            const canvas = document.getElementById('lawCanvas');
+            if (!canvas || !canvas.parentElement) return;
+            canvas.width = canvas.parentElement.clientWidth;
+            canvas.height = canvas.parentElement.clientHeight;
+            updateLawSim();
+        }
+
+        function updateLawSim() {
+            const m1El = document.getElementById('m1Range');
+            const m2El = document.getElementById('m2Range');
+            const rEl = document.getElementById('rRange');
+            if (!m1El || !m2El || !rEl) return;
+
+            const m1 = parseFloat(m1El.value);
+            const m2 = parseFloat(m2El.value);
+            const r = parseFloat(rEl.value);
+
+            document.getElementById('m1-disp').textContent = `${m1} kg`;
+            document.getElementById('m2-disp').textContent = `${m2} kg`;
+            document.getElementById('r-disp').textContent = `${r.toFixed(1)} m`;
+            document.getElementById('r-ratio-badge').textContent = `Inverse Square Factor: 1/r² = ${(1 / (r * r)).toFixed(3)} m⁻²`;
+
+            const force = (G_VAL * m1 * m2) / (r * r);
+            const exp = Math.floor(Math.log10(force));
+            const mantissa = (force / Math.pow(10, exp)).toFixed(2);
+            document.getElementById('sim-force-val').textContent = `${mantissa} × 10^(${exp}) N`;
+
+            drawLawCanvas(m1, m2, r);
+        }
+
+        function drawLawCanvas(m1, m2, r) {
+            const canvas = document.getElementById('lawCanvas');
+            if (!canvas) return;
+            const ctx = canvas.getContext('2d');
+            const w = canvas.width;
+            const h = canvas.height;
+            ctx.clearRect(0, 0, w, h);
+
+            // Subtle Grid
+            ctx.strokeStyle = 'rgba(148, 163, 184, 0.06)';
+            ctx.lineWidth = 1;
+            for (let x = 0; x < w; x += 32) {
+                ctx.beginPath(); ctx.moveTo(x, 0); ctx.lineTo(x, h); ctx.stroke();
+            }
+            for (let y = 0; y < h; y += 32) {
+                ctx.beginPath(); ctx.moveTo(0, y); ctx.lineTo(w, y); ctx.stroke();
+            }
+
+            const cy = h / 2;
+            const minPx = 110;
+            const maxPx = Math.min(w - 140, 480);
+            const distPx = minPx + ((r - 2) / 10) * (maxPx - minPx);
+
+            const x1 = w / 2 - distPx / 2;
+            const x2 = w / 2 + distPx / 2;
+
+            const rad1 = 16 + Math.sqrt(m1) * 1.8;
+            const rad2 = 16 + Math.sqrt(m2) * 1.8;
+
+            // Separation Line r
+            ctx.beginPath();
+            ctx.setLineDash([6, 6]);
+            ctx.strokeStyle = 'rgba(56, 189, 248, 0.45)';
+            ctx.lineWidth = 1.5;
+            ctx.moveTo(x1, cy + 52);
+            ctx.lineTo(x2, cy + 52);
+            ctx.stroke();
+            ctx.setLineDash([]);
+
+            ctx.fillStyle = '#38bdf8';
+            ctx.font = '600 12px "JetBrains Mono", monospace';
+            ctx.textAlign = 'center';
+            ctx.fillText(`r = ${r.toFixed(1)} m`, w / 2, cy + 70);
+
+            // Force Vector Length scaling
+            const fNorm = (m1 * m2) / (r * r); // Range: ~0.17 to 2500
+            const vecLen = Math.min(distPx / 2 - rad1 - 10, Math.max(24, 18 + Math.log10(fNorm + 1) * 28));
+
+            drawVectorArrow(ctx, x1 + rad1 + 4, cy, x1 + rad1 + 4 + vecLen, cy, '#10b981', 'F₁₂');
+            drawVectorArrow(ctx, x2 - rad2 - 4, cy, x2 - rad2 - 4 - vecLen, cy, '#10b981', 'F₂₁');
+
+            // Mass 1 Sphere
+            const g1 = ctx.createRadialGradient(x1 - rad1/3, cy - rad1/3, 4, x1, cy, rad1);
+            g1.addColorStop(0, '#a5b4fc');
+            g1.addColorStop(1, '#4f46e5');
+            ctx.beginPath();
+            ctx.arc(x1, cy, rad1, 0, Math.PI * 2);
+            ctx.fillStyle = g1;
+            ctx.fill();
+            ctx.strokeStyle = '#e0e7ff';
+            ctx.lineWidth = 2;
+            ctx.stroke();
+
+            // Mass 2 Sphere
+            const g2 = ctx.createRadialGradient(x2 - rad2/3, cy - rad2/3, 4, x2, cy, rad2);
+            g2.addColorStop(0, '#fda4af');
+            g2.addColorStop(1, '#e11d48');
+            ctx.beginPath();
+            ctx.arc(x2, cy, rad2, 0, Math.PI * 2);
+            ctx.fillStyle = g2;
+            ctx.fill();
+            ctx.strokeStyle = '#ffe4e6';
+            ctx.lineWidth = 2;
+            ctx.stroke();
+
+            // Labels
+            ctx.fillStyle = '#f8fafc';
+            ctx.font = '600 12px Inter, sans-serif';
+            ctx.fillText(`m₁ = ${m1} kg`, x1, cy - rad1 - 12);
+            ctx.fillText(`m₂ = ${m2} kg`, x2, cy - rad2 - 12);
+        }
+
+        function drawVectorArrow(ctx, x1, y1, x2, y2, color, label) {
+            const head = 9;
+            const angle = Math.atan2(y2 - y1, x2 - x1);
+            ctx.strokeStyle = color;
+            ctx.fillStyle = color;
+            ctx.lineWidth = 2.5;
+
+            ctx.beginPath();
+            ctx.moveTo(x1, y1);
+            ctx.lineTo(x2, y2);
+            ctx.stroke();
+
+            ctx.beginPath();
+            ctx.moveTo(x2, y2);
+            ctx.lineTo(x2 - head * Math.cos(angle - Math.PI / 6), y2 - head * Math.sin(angle - Math.PI / 6));
+            ctx.lineTo(x2 - head * Math.cos(angle + Math.PI / 6), y2 - head * Math.sin(angle + Math.PI / 6));
+            ctx.closePath();
+            ctx.fill();
+
+            if (label) {
+                ctx.font = '700 12px "JetBrains Mono", monospace';
+                ctx.textAlign = 'center';
+                ctx.fillText(label, (x1 + x2) / 2, (y1 + y2) / 2 - 10);
+            }
+        }
+
+        // ==========================================
+        // TAB 3: VECTOR & SUPERPOSITION SANDBOX
+        // ==========================================
+        let vectorMode = '2body';
+        let nodes = [
+            { x: 160, y: 180, label: 'm₁', color: '#6366f1' },
+            { x: 360, y: 100, label: 'm₂', color: '#f43f5e' },
+            { x: 130, y: 75,  label: 'm₃', color: '#f59e0b' }
+        ];
+        let activeDragNode = null;
+
+        function setVectorMode(mode) {
+            vectorMode = mode;
+            const btn2 = document.getElementById('mode-2body');
+            const btn3 = document.getElementById('mode-3body');
+            const telem = document.getElementById('vector-telemetry');
+
+            if (mode === '2body') {
+                btn2.className = "px-3 py-1.5 rounded-lg font-semibold bg-emerald-600 text-white transition-all";
+                btn3.className = "px-3 py-1.5 rounded-lg font-semibold text-slate-400 hover:text-white transition-all";
+                telem.innerHTML = `<div>NCERT Fig 7.3: <span class="text-cyan-400">r = r₂ - r₁</span></div><div>Attraction: <span class="text-emerald-400">F₁₂ = -F₂₁</span></div>`;
+            } else {
+                btn3.className = "px-3 py-1.5 rounded-lg font-semibold bg-emerald-600 text-white transition-all";
+                btn2.className = "px-3 py-1.5 rounded-lg font-semibold text-slate-400 hover:text-white transition-all";
+                telem.innerHTML = `<div>NCERT Fig 7.4: <span class="text-amber-400">Superposition</span></div><div>Resultant: <span class="text-emerald-400">F₁ = F₁₂ + F₁₃</span></div>`;
+            }
+            drawVectorSandbox();
+        }
+
+        function initVectorSim() {
+            const canvas = document.getElementById('vectorCanvas');
+            if (!canvas || !canvas.parentElement) return;
+            canvas.width = canvas.parentElement.clientWidth;
+            canvas.height = canvas.parentElement.clientHeight;
+            // Ensure nodes fit inside resized canvas
+            nodes[0].x = Math.min(canvas.width - 60, Math.max(90, canvas.width * 0.35));
+            nodes[0].y = Math.min(canvas.height - 60, Math.max(60, canvas.height * 0.62));
+            nodes[1].x = Math.min(canvas.width - 60, Math.max(90, canvas.width * 0.72));
+            nodes[1].y = Math.min(canvas.height - 60, Math.max(60, canvas.height * 0.32));
+            nodes[2].x = Math.min(canvas.width - 60, Math.max(90, canvas.width * 0.28));
+            nodes[2].y = Math.min(canvas.height - 60, Math.max(60, canvas.height * 0.25));
+            drawVectorSandbox();
+        }
+
+        function drawVectorSandbox() {
+            const canvas = document.getElementById('vectorCanvas');
+            if (!canvas) return;
+            const ctx = canvas.getContext('2d');
+            const w = canvas.width;
+            const h = canvas.height;
+            ctx.clearRect(0, 0, w, h);
+
+            // Origin O at bottom-left
+            const ox = 45;
+            const oy = h - 35;
+
+            // Coordinate Axes X, Y, Z (NCERT Fig 7.3 style)
+            ctx.strokeStyle = '#475569';
+            ctx.lineWidth = 1.5;
+            drawVectorArrow(ctx, ox, oy, w - 25, oy, '#475569', 'X');
+            drawVectorArrow(ctx, ox, oy, ox, 25, '#475569', 'Z');
+            drawVectorArrow(ctx, ox, oy, ox - 28, oy + 24, '#475569', 'Y');
+            ctx.fillStyle = '#94a3b8';
+            ctx.font = '700 12px Inter, sans-serif';
+            ctx.fillText('O', ox - 12, oy + 4);
+
+            const m1 = nodes[0];
+            const m2 = nodes[1];
+
+            if (vectorMode === '2body') {
+                // Position vectors r1 and r2 from Origin O
+                drawVectorArrow(ctx, ox, oy, m1.x, m1.y, 'rgba(99, 102, 241, 0.7)', 'r₁');
+                drawVectorArrow(ctx, ox, oy, m2.x, m2.y, 'rgba(99, 102, 241, 0.7)', 'r₂');
+
+                // Displacement vector r = r2 - r1
+                drawVectorArrow(ctx, m1.x, m1.y, m2.x, m2.y, '#38bdf8', 'r = r₂ - r₁');
+
+                // Force Vectors along line
+                const dx = m2.x - m1.x;
+                const dy = m2.y - m1.y;
+                const d = Math.hypot(dx, dy) || 1;
+                const fLen = Math.min(d * 0.42, 75);
+                drawVectorArrow(ctx, m1.x, m1.y, m1.x + (dx/d)*fLen, m1.y + (dy/d)*fLen, '#10b981', 'F₁₂');
+                drawVectorArrow(ctx, m2.x, m2.y, m2.x - (dx/d)*fLen, m2.y - (dy/d)*fLen, '#f43f5e', 'F₂₁');
+
+                drawNode(ctx, m1);
+                drawNode(ctx, m2);
+            } else {
+                // 3-Body Superposition Mode (NCERT Fig 7.4)
+                const m3 = nodes[2];
+                const dx2 = m2.x - m1.x, dy2 = m2.y - m1.y, d2 = Math.hypot(dx2, dy2) || 1;
+                const dx3 = m3.x - m1.x, dy3 = m3.y - m1.y, d3 = Math.hypot(dx3, dy3) || 1;
+
+                ctx.setLineDash([4, 4]);
+                ctx.strokeStyle = 'rgba(148, 163, 184, 0.35)';
+                ctx.beginPath(); ctx.moveTo(m1.x, m1.y); ctx.lineTo(m2.x, m2.y); ctx.stroke();
+                ctx.beginPath(); ctx.moveTo(m1.x, m1.y); ctx.lineTo(m3.x, m3.y); ctx.stroke();
+                ctx.setLineDash([]);
+
+                const f2x = (dx2 / d2) * 55, f2y = (dy2 / d2) * 55;
+                const f3x = (dx3 / d3) * 55, f3y = (dy3 / d3) * 55;
+
+                drawVectorArrow(ctx, m1.x, m1.y, m1.x + f2x, m1.y + f2y, '#f43f5e', 'F₁₂');
+                drawVectorArrow(ctx, m1.x, m1.y, m1.x + f3x, m1.y + f3y, '#f59e0b', 'F₁₃');
+                // Resultant Force F1 = F12 + F13
+                drawVectorArrow(ctx, m1.x, m1.y, m1.x + f2x + f3x, m1.y + f2y + f3y, '#10b981', 'F₁ (Net)');
+
+                drawNode(ctx, m1);
+                drawNode(ctx, m2);
+                drawNode(ctx, m3);
+            }
+        }
+
+        function drawNode(ctx, n) {
+            ctx.beginPath();
+            ctx.arc(n.x, n.y, 15, 0, Math.PI * 2);
+            ctx.fillStyle = n.color;
+            ctx.fill();
+            ctx.strokeStyle = '#ffffff';
+            ctx.lineWidth = 2.5;
+            ctx.stroke();
+
+            ctx.fillStyle = '#ffffff';
+            ctx.font = '700 11px Inter, sans-serif';
+            ctx.textAlign = 'center';
+            ctx.fillText(n.label, n.x, n.y + 4);
+        }
+
+        // Pointer Events for Vector Canvas
+        function setupVectorInteractions() {
+            const canvas = document.getElementById('vectorCanvas');
+            if (!canvas) return;
+
+            function getPt(e) {
+                const r = canvas.getBoundingClientRect();
+                const cx = e.clientX ?? (e.touches && e.touches[0].clientX);
+                const cy = e.clientY ?? (e.touches && e.touches[0].clientY);
+                return { x: cx - r.left, y: cy - r.top };
+            }
+
+            const startDrag = (e) => {
+                const pt = getPt(e);
+                const count = vectorMode === '2body' ? 2 : 3;
+                for (let i = 0; i < count; i++) {
+                    if (Math.hypot(pt.x - nodes[i].x, pt.y - nodes[i].y) < 24) {
+                        activeDragNode = nodes[i];
+                        break;
+                    }
+                }
+            };
+
+            const moveDrag = (e) => {
+                if (!activeDragNode) return;
+                const pt = getPt(e);
+                activeDragNode.x = Math.max(60, Math.min(canvas.width - 30, pt.x));
+                activeDragNode.y = Math.max(30, Math.min(canvas.height - 50, pt.y));
+                drawVectorSandbox();
+                if (e.cancelable) e.preventDefault();
+            };
+
+            const endDrag = () => { activeDragNode = null; };
+
+            canvas.addEventListener('mousedown', startDrag);
+            window.addEventListener('mousemove', moveDrag);
+            window.addEventListener('mouseup', endDrag);
+
+            canvas.addEventListener('touchstart', startDrag, { passive: true });
+            window.addEventListener('touchmove', moveDrag, { passive: false });
+            window.addEventListener('touchend', endDrag);
+        }
+
+        // ==========================================
+        // TAB 5: GAMIFIED QUIZ ENGINE
+        // ==========================================
+        const correctIndices = [1, 0, 1, 2, 2];
+        const explanations = [
+            "Because $R_m / R_E \\approx 60$, the inverse-square ratio $(R_m / R_E)^2 \\approx 60^2 = 3600$, matching $g / a_m$.",
+            "Force on $m_2$ is directed towards $m_1$ (opposite to $\\mathbf{r} = \\mathbf{r}_2 - \\mathbf{r}_1$), hence $\\mathbf{F} = -G \\frac{m_1 m_2}{|\\mathbf{r}|^3}\\mathbf{r}$.",
+            "From $G = \\frac{F r^2}{m_1 m_2}$, substituting dimensions gives $\\frac{[\\text{M L T}^{-2}][\\text{L}^2]}{[\\text{M}^2]} = [\\text{M}^{-1}\\text{L}^3\\text{T}^{-2}]$.",
+            "By symmetry (NCERT Example 7.2a), the three equal forces pull at $120^\\circ$ to each other and sum to $\\mathbf{0}\\text{ N}$.",
+            "Using $F' = G \\frac{(2m_1)(2m_2)}{(r/2)^2} = \\frac{4}{1/4} F = 16 F$."
+        ];
+
+        let score = 0;
+        let streak = 0;
+        let answered = new Set();
+
+        function checkAnswer(qIdx, optIdx, btn) {
+            if (answered.has(qIdx)) return;
+            answered.add(qIdx);
+
+            const card = btn.closest('.quiz-question');
+            const opts = card.querySelectorAll('.quiz-opt');
+            const fb = card.querySelector('.quiz-feedback');
+            const nextWrap = card.querySelector('.quiz-next-wrap');
+
+            opts.forEach((o, i) => {
+                o.disabled = true;
+                if (i === correctIndices[qIdx]) {
+                    o.classList.add('border-emerald-500', 'bg-emerald-950/60', 'text-emerald-200');
+                } else if (i === optIdx) {
+                    o.classList.add('border-rose-500', 'bg-rose-950/60', 'text-rose-200');
+                }
+            });
+
+            fb.classList.remove('hidden');
+            nextWrap.classList.remove('hidden');
+
+            if (optIdx === correctIndices[qIdx]) {
+                score++;
+                streak++;
+                fb.className = "quiz-feedback p-4 rounded-2xl border bg-emerald-950/50 border-emerald-500/40 text-emerald-200 text-xs sm:text-sm";
+                fb.innerHTML = `<i class="fa-solid fa-circle-check text-emerald-400 mr-1.5"></i> <strong>Spot On!</strong> ${explanations[qIdx]}`;
+            } else {
+                streak = 0;
+                fb.className = "quiz-feedback p-4 rounded-2xl border bg-rose-950/50 border-rose-500/40 text-rose-200 text-xs sm:text-sm";
+                fb.innerHTML = `<i class="fa-solid fa-circle-xmark text-rose-400 mr-1.5"></i> <strong>Not quite.</strong> ${explanations[qIdx]}`;
+            }
+
+            document.getElementById('quiz-score').textContent = `${score} / 5`;
+            document.getElementById('quiz-streak').innerHTML = `<i class="fa-solid fa-fire mr-1"></i>${streak}`;
+            renderMath();
+        }
+
+        function nextQuestion(currentIdx) {
+            const currentCard = document.querySelector(`.quiz-question[data-q="${currentIdx}"]`);
+            if (currentCard) currentCard.classList.add('hidden');
+
+            const nextCard = document.querySelector(`.quiz-question[data-q="${currentIdx + 1}"]`);
+            const prog = document.getElementById('quiz-progress-bar');
+
+            if (nextCard) {
+                nextCard.classList.remove('hidden');
+                prog.style.width = `${((currentIdx + 2) / 5) * 100}%`;
+                renderMath();
+            } else {
+                prog.style.width = '100%';
+                const comp = document.getElementById('quiz-complete');
+                comp.classList.remove('hidden');
+                document.getElementById('final-score-text').textContent = `You scored ${score} out of 5 (${score * 20}% accuracy). Great job mastering NCERT Section 7.3!`;
+            }
+        }
+
+        function resetQuiz() {
+            score = 0;
+            streak = 0;
+            answered.clear();
+            document.getElementById('quiz-score').textContent = '0 / 5';
+            document.getElementById('quiz-streak').innerHTML = '<i class="fa-solid fa-fire mr-1"></i>0';
+            document.getElementById('quiz-progress-bar').style.width = '20%';
+            document.getElementById('quiz-complete').classList.add('hidden');
+
+            document.querySelectorAll('.quiz-question').forEach((card, idx) => {
+                if (idx === 0) card.classList.remove('hidden');
+                else card.classList.add('hidden');
+
+                card.querySelectorAll('.quiz-opt').forEach(o => {
+                    o.disabled = false;
+                    o.className = "quiz-opt text-left p-4 rounded-2xl bg-slate-900/90 border border-slate-800 hover:border-indigo-500/60 text-sm text-slate-200 transition-all flex items-center gap-3";
+                });
+                card.querySelector('.quiz-feedback').classList.add('hidden');
+                card.querySelector('.quiz-next-wrap').classList.add('hidden');
+            });
+            renderMath();
+        }
+
+        // Lifecycle Initialization
+        window.addEventListener('resize', () => {
+            initLawSim();
+            initVectorSim();
+        });
+
+        window.onload = function () {
+            initLawSim();
+            initVectorSim();
+            setupVectorInteractions();
+
+            ['m1Range', 'm2Range', 'rRange'].forEach(id => {
+                const el = document.getElementById(id);
+                if (el) el.addEventListener('input', updateLawSim);
+            });
+
+            renderMath();
+        };
+    </script>
+</body>
+</html>
